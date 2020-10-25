@@ -67,9 +67,32 @@ def newPitch():
         return redirect(url_for('.index'))
 
     title = 'NEW PITCH'
-    return render_template('newPitch.html',title = title,pitchForm = pitch)   
-        
+    return render_template('newPitch.html',title = title,pitchForm = pitch)  
 
+@main.route('/category/interview',methods= ['GET'])
+def displayInterviewCategory():
+    interviewPitches = Pitch.get_pitches('interview')
+    return render_template('category/interview.html',interviewPitches = interviewPitches)
+    
+@main.route('/category/product',methods= ['POST','GET'])
+def displayProductCategory():
+    productPitches = Pitch.get_pitches('product')
+    return render_template('category/product.html',productPitches = productPitches)
+
+@main.route('/category/promotion',methods= ['POST','GET'])
+def displayPromotionCategory():
+    promotionPitches = Pitch.get_pitches('promotion')
+    return render_template('category/promotion.html',promotionPitches = promotionPitches)
+
+@main.route('/category/pickup',methods= ['POST','GET'])
+def displayPickupCategory():
+    pickupPitches = Pitch.get_pitches('pickup')
+    return render_template('category/pickup.html',pickupPitches = pickupPitches)
+
+@main.route('/pitch/<int:id>',methods= ['POST','GET'])
+def viewPitch(id):
+    pitch = Pitch.get_pitches(id)
+    return render_template('pitch.html',pitch = pitch)
 
 
 
