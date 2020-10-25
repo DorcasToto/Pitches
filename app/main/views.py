@@ -1,8 +1,8 @@
 
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import User,Pitch
-from .forms import updateProfile,PitchForm
+from ..models import User,Pitch,Comment
+from .forms import updateProfile,PitchForm,CommentForm
 from .. import db,photos
 from flask_login import login_required,current_user
 
@@ -92,7 +92,21 @@ def displayPickupCategory():
 @main.route('/pitch/<int:id>',methods= ['POST','GET'])
 def viewPitch(id):
     pitch = Pitch.getPitchId(id)
-    return render_template('pitch.html',pitch = pitch)
+
+    commentForm = CommentForm()
+    if commentForm.validate_on_submit():
+        comment = commentForm.text.data
+
+        newComment = Comment(comment = comment,user = current_user,pitch_id = pitch)
+
+        newComment.saveComment()
+
+    comments = Comment.get_comments(pitch)
+    return render_template('pitch.html',commentForm = commentForm,comments = comments,pitch = pitch)
+
+    
+
+    
 
 
 
