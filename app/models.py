@@ -14,6 +14,9 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String())
     password_secure = db.Column(db.String(255))
     pitches = db.relationship('Pitch',backref = 'user',lazy="dynamic")
+    comments = db.relationship('Comment',backref =  'pitch_id',lazy = "dynamic")
+    likes = db.Column(db.Integer)
+    dislikes = db.Column(db.Integer)
 
     @property
     def password(self):
@@ -55,3 +58,18 @@ class Pitch(db.Model):
     def get_pitches(cls,category):
         pitches = Pitch.query.filter_by(pitch_category=category).all()
         return pitches
+
+    @classmethod
+    def getPitchId(cls,id):
+        pitch = Pitch.query.filter_by(pitch_id=id).first()
+        return pitch
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer,primary_key = True)
+    comment = db.Column(db.String(500))
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    pitch_id = db.Column(db.Integer,db.ForeignKey("pitches.id"))     
+    
+

@@ -91,7 +91,7 @@ def displayPickupCategory():
 
 @main.route('/pitch/<int:id>',methods= ['POST','GET'])
 def viewPitch(id):
-    pitch = Pitch.get_pitches(id)
+    pitch = Pitch.getPitchId(id)
     return render_template('pitch.html',pitch = pitch)
 
 
