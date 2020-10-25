@@ -13,7 +13,7 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     password_secure = db.Column(db.String(255))
-    pitches = db.relationship('Pitch',backref = 'role',lazy="dynamic")
+    pitches = db.relationship('Pitch',backref = 'user',lazy="dynamic")
 
     @property
     def password(self):

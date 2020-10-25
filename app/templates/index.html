@@ -1,2 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'base.html'%}
+{% block content %}
+
 <h3>Hey</h3>
+
+<div style="padding-bottom: 20px; text-align: center;">
+    <a href="{{url_for('main.newPitch')}}" class="btn btn-info btn-center">Create Pitch</a>
+</div>
+{% endblock %}
