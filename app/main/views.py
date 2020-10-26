@@ -95,7 +95,7 @@ def viewPitch(id):
     onepitch = Pitch.getPitchId(id)
     comments = Comment.getComments(id)
 
-    if request.args.get("likes"):
+    if request.args.get("like"):
         onepitch.likes = onepitch.likes + 1
 
         db.session.add(onepitch)
@@ -103,7 +103,7 @@ def viewPitch(id):
 
         return redirect("/comment/{pitch_id}".format(pitch_id=pitch.id))
 
-    elif request.args.get("dislikes"):
+    elif request.args.get("dislike"):
         onepitch.dislikes = onepitch.dislikes + 1
 
         db.session.add(onepitch)
@@ -126,6 +126,7 @@ def viewPitch(id):
 def displayUserPitches(uname):
     user = User.query.filter_by(username=uname).first()
     pitches = Pitch.query.filter_by(user_id = user.id).all()
+    import pdb; pdb.set_trace()
     
     return render_template("profile/profile.html", user=user,pitches=pitches)
 

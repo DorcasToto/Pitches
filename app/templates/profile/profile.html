@@ -53,11 +53,12 @@
 
 </div>
 </div>
-<hr>
+
+
+<a href="{{url_for('main.displayUserPitches,uname = current_user.username')}}" class="btn btn-default btn-center -center">
+  Pitch</a>
   <h3 class="text-uppercase text-center"> My Pitches</h3>
-  {% for pitch in pitches %}
-  {{pitch.pitch_title}}
-  {%endfor%}
+ {{macro.displayPitches(pitches)}}
 </div>
 {% endblock %}
   </div>
