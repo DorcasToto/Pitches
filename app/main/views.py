@@ -95,6 +95,22 @@ def viewPitch(id):
     onepitch = Pitch.getPitchId(id)
     comments = Comment.getComments(id)
 
+    if request.args.get("likes"):
+        onepitch.likes = onepitch.likes + 1
+
+        db.session.add(onepitch)
+        db.session.commit()
+
+        return redirect("/comment/{pitch_id}".format(pitch_id=pitch.id))
+
+    elif request.args.get("dislikes"):
+        onepitch.dislikes = onepitch.dislikes + 1
+
+        db.session.add(onepitch)
+        db.session.commit()
+
+        return redirect("/comment/{pitch_id}".format(pitch_id=pitch.id))
+
     commentForm = CommentForm()
     if commentForm.validate_on_submit():
         comment = commentForm.text.data
@@ -112,7 +128,6 @@ def displayUserPitches(uname):
     pitches = Pitch.query.filter_by(user_id = user.id).all()
     
     return render_template("profile/profile.html", user=user,pitches=pitches)
-
 
 
 
