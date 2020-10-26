@@ -1,64 +1,79 @@
 {% extends 'base.html'%}
 {% block content %}
-
-<div class="container">
-
-  <div class="jumbotron card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
-    <div class="text-white text-center py-5 px-4">
-      <div>
-        <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Welcome to Pitch Place</strong></h2>
-        <p class="mx-5 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-          optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed qui, dolorum!
-        </p>
-        <a class="btn btn-outline-white btn-md" href="{{url_for('main.newPitch')}}"><i class="fas fa-clone left"></i>Create Pitch</a>
-      </div>
+<div class="">
+  <div class="jumbotron jumbotron-fluid" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);"">
+    <div class="container text-white text-center">
+      <h2 class="card-title h1-responsive font-bold">Welcome to Pitch Places</h2>
+      <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+      <a class="btn btn-outline-white btn-md" href="{{url_for('main.newPitch')}}"><i class="fas fa-clone left"></i>Create Pitch</a>
     </div>
   </div>
 
-<h3 class="text-center">Categories</h3>
+<h3 class="text-center text-uppercase text-bold">Categories</h3>
 <hr>
 
-<div class="row">
-  <div class=" card col-md-3">
-      <div class="well well-lg" style="text-align: center;">
-          <h3>Interviews Pitches</h3>
-          <hr>
-          <p>Essentially it’s a short summary about yourself and what you do, in an interview. </p>
-              <a href="{{url_for('main.displayInterviewCategory')}}" class="btn btn-info btn-center -center">Click to
-              view</a>
-      </div>
-  </div>
-  <div class=" card col-md-3">
-    <div class="well well-lg" style="text-align: center;">
-        <h3>Interviews Pitches</h3>
-        <hr>
-        <p>Essentially it’s a short summary about yourself and what you do, in an interview. </p>
-            <a href="{{url_for('main.displayPromotionCategory')}}" class="btn btn-info btn-center -center">Click to
-            view</a>
+  <div class="row m-3">
+    <div class="col-sm">
+      <div class=" card col-sm">
+        <div class="well well-lg p-3" style="text-align: center;">
+            <h3 class="">Interviews Pitches</h3>
+            <hr>
+            <p>Essentially it’s a short summary about yourself and what you do, in an interview. </p>
+                <a href="{{url_for('main.displayInterviewCategory')}}" class="btn btn-default btn-center -center">Click to
+                view</a>
+        </div>
     </div>
-</div>
-<div class=" card col-md-3">
-  <div class="well well-lg" style="text-align: center;">
-      <h3>Interviews Pitches</h3>
-      <hr>
-      <p>Essentially it’s a short summary about yourself and what you do, in an interview. </p>
-          <a href="{{url_for('main.displayProductCategory')}}" class="btn btn-info btn-center -center">Click to
-          view</a>
+    </div>
+    <div class="col-sm">
+      <div class=" card col-sm">
+        <div class="well well-lg p-3" style="text-align: center;">
+            <h3>Promotion Pitches</h3>
+            <hr>
+            <p>Essentially it’s a short summary about yourself and what you do, in an interview. </p>
+                <a href="{{url_for('main.displayPromotionCategory')}}" class="btn btn-default btn-center -center">Click to
+                view</a>
+        </div>
+    </div>
+    </div>
   </div>
-</div>
 
-<div class=" card col-md-3">
-  <div class="well well-lg" style="text-align: center;">
-      <h3>Interviews Pitches</h3>
-      <hr>
-      <p>Essentially it’s a short summary about yourself and what you do, in an interview. </p>
-          <a href="{{url_for('main.displayPickupCategory')}}" class="btn btn-info btn-center -center">Click to
-          view</a>
+  <div class="row m-3">
+    <div class="col-sm">
+      <div class=" card col-sm">
+        <div class="well well-lg p-3" style="text-align: center;">
+            <h3>Product Pitches</h3>
+            <hr>
+            <p>Essentially it’s a short summary about yourself and what you do, in an interview. </p>
+                <a href="{{url_for('main.displayProductCategory')}}" class="btn btn-default btn-center -center">Click to
+                view</a>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-sm">
+      <div class=" card col-sm">
+        <div class="well well-lg p-3" style="text-align: center;">
+            <h3>Pickup Lines Pitches</h3>
+            <hr>
+            <p>Essentially it’s a short summary about yourself and what you do, in an interview. </p>
+                <a href="{{url_for('main.displayPickupCategory')}}" class="btn btn-default btn-center -center">Click to
+                view</a>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
+  <!-- Footer -->
+<footer class="page-footer font-small blue-grey darken-3">
 
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/">pitch</a>
   </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
 
 </div>
 
