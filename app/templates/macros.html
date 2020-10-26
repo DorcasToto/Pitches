@@ -1,13 +1,19 @@
-
 {% macro displayPitches(pitches_list)%}
-{%for pitch in pitches_list%}
-    <div>
-        <div>
-            <h4>{{pitch.pitch_title}}</h4>
-            <p>{{pitch.pitch_comment}}</p>
-            <p>By:{{pitch.user.username}} <a href="/comment/{{pitch.id}}" class="btn btn-primary pull-right">View Pitch</a> </p>
-            <p>Posted on: {{pitch.posted}}</p>
-        </div>
+{%for pitch in pitches_list%}   
+    <div class="row">
+        <div class="col-sm m-5">
+            <div class=" card col-sm mt-2">
+              <div class="well well-lg p-3" style="text-align: center;">
+                  <h3>{{pitch.pitch_title}}</h3>
+                  <hr>
+                  <p>{{pitch.pitch_comment|truncate(50)}}</p>
+                  <p>By : {{pitch.user.username}} </p>
+                  <p>Posted on: {{pitch.posted}}</p>
+                      <a href="/comment/{{pitch.id}}" class="btn btn-default btn-center -center">
+                      Comment</a>
+              </div>
+          </div>
+          </div>
     </div>
 {%endfor%}
 {%endmacro%}

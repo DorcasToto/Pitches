@@ -3,20 +3,19 @@
 {% import 'macros.html' as macro %}
 {% block content %}
 <div>
-    <h3>Pitches</h3>
-    {{pitch.pitch_title}}
-    {{pitch.posted}}
-    {{pitch.pitch_comment}}
-</div>
-<div>
     <div class="container">
         <div class="row">
-        <div class="col-md-2"> </div>
-        <div class="col-md-8">
+        <div class="col-sm"> 
+            <h3 class="pt-3">Your Pitch</h3>
+            {{pitch.pitch_title}}
+        </div>
+        <div class="col-sm">
+            <h3 class="pt-3">Comments</h3>
         
             {% if current_user.is_authenticated %}
             {{ wtf.quick_form(commentForm) }}
             {%endif%}
+            <h3>Display comments</h3>
             {{macro.displayComments(comments)}}
         
         </div>

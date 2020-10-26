@@ -90,8 +90,10 @@ def displayPickupCategory():
     return render_template('category/pickup.html',pickupPitches = pickupPitches)
 
 @main.route('/comment/<int:id>',methods= ['POST','GET'])
+@login_required
 def viewPitch(id):
     onepitch = Pitch.getPitchId(id)
+    comments = Comment.getComments(id)
 
     commentForm = CommentForm()
     if commentForm.validate_on_submit():
@@ -101,8 +103,7 @@ def viewPitch(id):
 
         newComment.saveComment()
 
-    comments = Comment.getComments(onepitch)
-    return render_template('pitch.html',commentForm = commentForm,comments = comments,pitch = onepitch)
+    return render_template('comment.html',commentForm = commentForm,comments = comments,pitch = onepitch)
 
     
 @main.route('/user/<uname>/pitches')
