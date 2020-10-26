@@ -67,7 +67,7 @@ def newPitch():
         return redirect(url_for('.index'))
 
     title = 'NEW PITCH'
-    return render_template('newPitch.html',title = title,pitchForm = pitch)  
+    return render_template('newPitch.html',title = title,pitchform = pitch)  
 
 @main.route('/category/interview',methods= ['GET'])
 def displayInterviewCategory():
@@ -89,24 +89,28 @@ def displayPickupCategory():
     pickupPitches = Pitch.get_pitches('pickup')
     return render_template('category/pickup.html',pickupPitches = pickupPitches)
 
-@main.route('/pitch/<int:id>',methods= ['POST','GET'])
+@main.route('/comment/<int:id>',methods= ['POST','GET'])
 def viewPitch(id):
-    pitch = Pitch.getPitchId(id)
+    onepitch = Pitch.getPitchId(id)
 
     commentForm = CommentForm()
     if commentForm.validate_on_submit():
         comment = commentForm.text.data
 
-        newComment = Comment(comment = comment,user = current_user,pitch_id = pitch)
+        newComment = Comment(comment = comment,user = current_user,pitch_id= id)
 
         newComment.saveComment()
 
-    comments = Comment.get_comments(pitch)
-    return render_template('pitch.html',commentForm = commentForm,comments = comments,pitch = pitch)
+    comments = Comment.getComments(onepitch)
+    return render_template('pitch.html',commentForm = commentForm,comments = comments,pitch = onepitch)
 
     
-
+@main.route('/user/<uname>/pitches')
+def displayUserPitches(uname):
+    user = User.query.filter_by(username=uname).first()
+    pitches = Pitch.query.filter_by(user_id = user.id).all()
     
+    return render_template("profile/profile.html", user=user,pitches=pitches)
 
 
 

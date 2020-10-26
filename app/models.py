@@ -50,7 +50,7 @@ class Pitch(db.Model):
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
 
-    comments = db.relationship('Comment',backref =  'pitch_id',lazy = "dynamic")
+    comments = db.relationship('Comment',backref =  'pitch',lazy = "dynamic")
 
     def save_pitch(self):
         db.session.add(self)
@@ -81,8 +81,8 @@ class Comment(db.Model):
 
     @classmethod
     def getComments(cls,pitch):
-    comments = Comment.query.filter_by(pitch_id=pitch).all()
-    return comments
+        comments = Comment.query.filter_by(pitch_id=pitch).all()
+        return comments
 
 
     
