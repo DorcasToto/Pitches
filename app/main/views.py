@@ -14,10 +14,11 @@ def index():
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
+    pitches = Pitch.query.filter_by(user_id = user.id).all()
     if user is None:
         abort(404)
 
-    return render_template('profile/profile.html',user = user)   
+    return render_template('profile/profile.html',user = user,pitches=pitches)   
 
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
 @login_required
@@ -122,14 +123,6 @@ def viewPitch(id):
     return render_template('comment.html',commentForm = commentForm,comments = comments,pitch = onepitch)
 
     
-@main.route('/user/<uname>/pitches')
-def displayUserPitches(uname):
-    user = User.query.filter_by(username=uname).first()
-    pitches = Pitch.query.filter_by(user_id = user.id).all()
-    import pdb; pdb.set_trace()
-    
-    return render_template("profile/profile.html", user=user,pitches=pitches)
-
 
 
 
