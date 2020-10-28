@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from config import config_options
 from flask_uploads import UploadSet,configure_uploads,IMAGES
 from flask_mail import Mail
+from flask_simplemde import SimpleMDE
 
 
 from flask_login import LoginManager
@@ -17,6 +18,7 @@ photos = UploadSet('photos',IMAGES)
 mail = Mail()
 bootstrap = Bootstrap()
 db = SQLAlchemy()
+simple = SimpleMDE()
 
 def create_app(config_name):
     app = Flask(__name__)
@@ -29,6 +31,7 @@ def create_app(config_name):
     db.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
+    simple.init_app(app)
 
     # configure UploadSet
     configure_uploads(app,photos)
